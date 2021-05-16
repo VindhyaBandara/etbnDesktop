@@ -1,0 +1,53 @@
+{
+  "name": "EDRLab.ThoriumReader",
+  "version": "1.6.0-alpha.1",
+  "description": "Desktop application to read ebooks",
+  "keywords": [
+    "readium",
+    "epub"
+  ],
+  "main": "./main.js",
+  "scripts": {
+    "postinstall": "npm run rmLevelDownDeep && npm run rmLevelDownPrebuilds && npm rebuild --runtime=electron --target=11.2.3 --disturl=https://atom.io/download/atom-shell --build-from-source",
+    "rmLevelDownDeep": "rimraf \"./node_modules/pouchdb-adapter-leveldb/node_modules/leveldown\"",
+    "rmLevelSQLite3Deep": "rimraf \"./node_modules/websql/node_modules/sqlite3/\" && rimraf \"./node_modules/redux-devtools-cli/node_modules/sqlite3/\"",
+    "_rmLevelSQLite3Deep": "node ../scripts/sqlite-package-patch.js node_modules/websql/package.json && node ../scripts/sqlite-package-patch.js node_modules/redux-devtools-cli/package.json && rimraf \"./node_modules/websql/node_modules/sqlite3/\" && rimraf \"./node_modules/redux-devtools-cli/node_modules/sqlite3/\"",
+    "rmLevelDownPrebuilds": "rimraf \"./node_modules/leveldown/prebuilds\"",
+    "rmSQLite3Prebuilds": "rimraf \"./node_modules/sqlite3/lib/binding/\"",
+    "rmLevelDownBuild": "rimraf \"./node_modules/leveldown/build/\"",
+    "rmSQLite3Build": "rimraf \"./node_modules/sqlite3/build/\" && rimraf \"./node_modules/sqlite3/build*\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:edrlab/readium-desktop.git"
+  },
+  "author": {
+    "name": "EDRLab",
+    "organization": "EDRLab",
+    "email": "contact@edrlab.org",
+    "url": "http://github.com/edrlab/"
+  },
+  "license": "BSD-3-Clause",
+  "licenses": [
+    {
+      "type": "BSD-3-Clause",
+      "url": "http://opensource.org/licenses/BSD-3-Clause"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/edrlab/readium-desktop/issues"
+  },
+  "homepage": "https://github.com/edrlab/readium-desktop",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "leveldown": "^5.6.0",
+    "mathjax": "^3.1.2",
+    "pouchdb-adapter-leveldb": "^7.2.2",
+    "pouchdb-adapter-node-websql": "^7.0.0",
+    "sqlite3": "^4.2.0",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+  },
+  "optionalDependencies": {}
+}
